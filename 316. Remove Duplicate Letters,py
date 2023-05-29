@@ -1,0 +1,18 @@
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        d={}
+        for i in s:
+            if i in d:
+                d[i]+=1
+            else:
+                d[i]=1
+        S=[]
+        for i in s:
+            if i in S:
+                d[i]-=1
+                continue
+            while S!=[] and S[-1]>=i and d[S[-1]]>1:
+                d[S.pop()]-=1
+            S.append(i)
+
+        return ''.join(S)
